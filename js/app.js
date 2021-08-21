@@ -74,9 +74,10 @@ function makeSelectedItem(selectedItem, selectedItemGroup) {
 
 // function to verify user's promo code input
 function isValidPromoCode() {
-	if (promoInput.value == 'stevekaku') {
-		const updatedGrandTotal = parseFloat(grandTotalPrice.innerText) * 0.8;
-		grandTotalPrice.innerText = updatedGrandTotal;
+	if (
+		promoInput.value == 'stevekaku' &&
+		grandTotalPrice.innerText == totalCost.innerText
+	) {
 		return true;
 	}
 	return false;
@@ -85,15 +86,20 @@ function isValidPromoCode() {
 // function to show message as per user's promo code validation
 function showMessage(isApplied) {
 	if (isApplied) {
+		// success message
 		promoMsg.classList.remove('alert-danger');
 		promoMsg.classList.add('alert-success');
 		promoMsg.innerText = 'Promo code applied successfully';
 	} else {
+		// failure message
 		promoMsg.classList.remove('alert-success');
 		promoMsg.classList.add('alert-danger');
 
+		// showing message as per users inputs
 		if (promoInput.value == '') {
 			promoMsg.innerText = 'Input field is empty';
+		} else if (grandTotalPrice.innerText != totalCost.innerText) {
+			promoMsg.innerText = 'You have already availed once';
 		} else {
 			promoMsg.innerText = 'Promo code is not valid';
 		}
@@ -145,9 +151,10 @@ paidDeliveryBtn.addEventListener('click', function () {
 // promo code event listeners
 promoBtn.addEventListener('click', function () {
 	if (isValidPromoCode()) {
-		// disable apply button and input field
-		promoBtn.setAttribute('disabled', true);
-		promoInput.setAttribute('disabled', true);
+		const grandTotalPriceValue = grandTotalPrice.innerText;
+		// taking 80% of the total cost
+		const updatedGrandTotal = parseFloat(grandTotalPriceValue) * 0.8;
+		grandTotalPrice.innerText = updatedGrandTotal;
 		// show success message
 		showMessage(true);
 	} else {
