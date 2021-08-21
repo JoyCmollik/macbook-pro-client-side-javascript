@@ -26,6 +26,12 @@
 			body {
 				font-family: 'Poppins', sans-serif;
 			}
+
+			.btn:focus,
+			.btn:active:focus,
+			.btn.active:focus {
+				box-shadow: none;
+			}
 		</style>
 	</head>
 	<body>
@@ -69,12 +75,14 @@
 									<div class="memory-btn-group">
 										<!-- btn 1 -->
 										<button
+											id="mem-8gb"
 											class="btn btn-outline-dark me-1"
 										>
 											8GB unified Memory
 										</button>
 										<!-- btn 2 -->
 										<button
+											id="mem-16gb"
 											class="btn btn-outline-dark me-1"
 										>
 											16GB unified Memory
@@ -87,18 +95,21 @@
 									<div class="storage-btn-group">
 										<!-- btn 1 -->
 										<button
+											id="storage-256gb"
 											class="btn btn-outline-dark me-1"
 										>
 											256GB SSD storage
 										</button>
 										<!-- btn 2 -->
 										<button
+											id="storage-512gb"
 											class="btn btn-outline-dark me-1"
 										>
 											512GB SSD storage
 										</button>
 										<!-- btn 3 -->
 										<button
+											id="storage-1tb"
 											class="btn btn-outline-dark me-1"
 										>
 											1TB SSD storage
@@ -113,12 +124,14 @@
 									<div class="delivery-btn-group">
 										<!-- btn 1 -->
 										<button
+											id="delivery-free"
 											class="btn btn-outline-dark me-1"
 										>
 											Friday, AUG 25 FREE Prime Delivery
 										</button>
 										<!-- btn 2 -->
 										<button
+											id="delivery-paid"
 											class="btn btn-outline-dark me-1"
 										>
 											Saturday, AUG 21 Delivery Charge $20
@@ -127,12 +140,11 @@
 								</div>
 							</div>
 							<!-- product pricing -->
-							<div class="product-pricing">
+							<div class="product-pricing w-75">
 								<ul class="list-group list-group-flush">
 									<!-- best price -->
 									<li
 										class="
-											w-75
 											list-group-item
 											d-flex
 											justify-content-between
@@ -140,13 +152,14 @@
 									>
 										<h5 class="fw-bold">Best Price</h5>
 										<h5 class="fw-bold">
-											$<span>1299</span>
+											$<span class="best-price"
+												>1299</span
+											>
 										</h5>
 									</li>
 									<!-- extra memory cost -->
 									<li
 										class="
-											w-75
 											list-group-item
 											d-flex
 											justify-content-between
@@ -155,12 +168,15 @@
 										<h5 class="fw-bold">
 											Extra memory cost
 										</h5>
-										<h5 class="fw-bold">$<span>0</span></h5>
+										<h5 class="fw-bold">
+											$<span class="ex-memory-cost"
+												>0</span
+											>
+										</h5>
 									</li>
 									<!-- extra storage cost -->
 									<li
 										class="
-											w-75
 											list-group-item
 											d-flex
 											justify-content-between
@@ -169,24 +185,30 @@
 										<h5 class="fw-bold">
 											Extra storage cost
 										</h5>
-										<h5 class="fw-bold">$<span>0</span></h5>
+										<h5 class="fw-bold">
+											$<span class="ex-storage-cost"
+												>0</span
+											>
+										</h5>
 									</li>
 									<!-- delivery charge -->
 									<li
 										class="
-											w-75
 											list-group-item
 											d-flex
 											justify-content-between
 										"
 									>
 										<h5 class="fw-bold">Delivery charge</h5>
-										<h5 class="fw-bold">$<span>0</span></h5>
+										<h5 class="fw-bold">
+											$<span class="delivery-cost"
+												>0</span
+											>
+										</h5>
 									</li>
 									<!-- total price -->
 									<li
 										class="
-											w-75
 											list-group-item
 											d-flex
 											justify-content-between
@@ -194,30 +216,52 @@
 										style="border-top: 2px solid black"
 									>
 										<h5 class="fw-bold">Total Price</h5>
-										<h5 class="fw-bold">$<span>0</span></h5>
+										<h5 class="fw-bold">
+											$<span class="total-cost"
+												>1299</span
+											>
+										</h5>
 									</li>
 								</ul>
 							</div>
 							<!-- promo code -->
-							<div class="promo-code my-4">
+							<div class="promo-code-container my-4 w-75">
 								<h5>Add promo code</h5>
-								<div class="input-group mb-3 w-75">
-									<input type="text" class="form-control" />
+								<div class="input-group mb-3">
+									<input
+										id="promo-input"
+										type="text"
+										class="form-control"
+									/>
 									<button
-										class="btn btn-danger"
+										class="btn btn-danger rounded-end"
 										type="button"
-										id="button-addon2"
+										id="promo-btn"
 									>
 										Apply
 									</button>
+
+									<div
+										class="
+											position-fixed
+											bottom-0
+											end-0
+											p-3
+										"
+										style="z-index: 11"
+									>
 								</div>
 							</div>
+							<!-- promo alert message -->
+							<p id="promo-message" class="alert p-2"></p>
 						</div>
 					</div>
 				</div>
-				<hr />
+				<hr>
 				<!-- Grand total price -->
-				<h1 class="fw-bold text-center">Total: $<span>1299</span></h1>
+				<h1 class="fw-bold text-center bg-dark bg-opacity-75 text-light py-4 rounded">
+					Total: $<span id="grand-total">1299</span>
+				</h1>
 			</section>
 		</main>
 
